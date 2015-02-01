@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>8 Ball</title>
+	<link rel="stylesheet" type="text/css" href="main.css">
+	<link href='http://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+	<meta name="viewport" content="initial-scale=1.0">
+</head>
+<body>
+<div class="container">
+	<div class="response-wrapper">
+		<div id="response" class="">ask me<br> anything.</div>
+	</div>
+	<div id="eightball-wrapper" class="eightball-wrapper" onclick="parseClick()">
+		<div class="eightball">
+			<div class="number">8</div>
+		</div>
+	</div>
+	<div class="shadow"></div>
+</div>
+<footer>
+Made by&nbsp;<a href="http://jeffersonlam.github.io"> Jefferson Lam</a>&nbsp;|&nbsp;<a href="">Github</a>
+</footer>
+<script>
+var responses = [
+	"It is<br> certain",
+	"It is<br> decidedly<br> so",
+	"Without<br> a doubt",
+	"Yes<br> definitely",
+	"You may<br> rely on it",
+	"As I see it,<br> yes",
+	"Most<br> likely",
+	"Outlook<br> good",
+	"Yes",
+	"Signs<br> point<br> to yes",
+	"Reply hazy<br> try again",
+	"Ask again<br> later",
+	"Better not<br> tell you now",
+	"Cannot<br> predict<br> now",
+	"Concentrate<br> and ask again",
+	"Don\'t<br> count<br> on it",
+	"My reply<br> is no",
+	"My sources<br> say no",
+	"Outlook<br> not so good",
+	"Very<br> doubtful"
+];
+
+var thinking = false;
+
+function parseClick(){
+	if (!thinking){
+		thinking = true;
+
+		var wrapper = document.getElementById("eightball-wrapper");
+		wrapper.classList.add('hyper');
+		var responseElem = document.getElementById("response");
+		responseElem.classList.add('fadeOut');
+
+		setTimeout(function(){
+			responseElem.classList.remove('fadeOut');
+			responseElem.classList.add('fadeIn');
+			var response = responses[Math.floor(Math.random() * responses.length)];
+			document.getElementById('response').innerHTML = response;
+			setTimeout(function(){
+				thinking = false;
+				wrapper.classList.remove('hyper');
+			}, 1500);
+		}, 1000);
+	}
+}
+</script>
+</body>
+</html>
